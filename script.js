@@ -34,10 +34,30 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-const playerSelection = "ROCK".toLowerCase();
-const computerSelection = getComputerChoice();
+/* game() lets user choose five times. When user inputs falsly, user gets asked to input again. 
+Keeps score and reports winner at the end  */
+function game(){
+    for (let i = 0; i < 5; i++){
+        let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
+        let computerSelection = getComputerChoice();
+        while (!checkInput(playerSelection)){
+            console.log("Wrong Input!");
+            playerSelection = prompt("Choose again!");
+        }
+        console.log(playRound(playerSelection, computerSelection));
 
-console.log(playRound(playerSelection, getComputerChoice()));
+    }
+}
+
+function checkInput(playerSelection){
+    if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+game();
 
     
 
