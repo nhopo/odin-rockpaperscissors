@@ -47,6 +47,8 @@ function getPlayerChoice(){
         console.log("Invalid Input! Choose again!");
         playerSelection = prompt("Choose Rock/Paper/Scissors!");
     }
+    
+    return playerSelection;
 }
 
 /* game() lets user choose five times. When user inputs falsy, user gets asked to input again. 
@@ -58,7 +60,7 @@ function game(){
     let computerScore = 0;
 
     for (let i = 0; i < rounds; i++){
-        let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
+        let playerSelection = getPlayerChoice();
         let computerSelection = getComputerChoice();
 
         let result = playRound(playerSelection, computerSelection);
