@@ -7,6 +7,7 @@ function getComputerChoice(){
     return choice[random];
 }
 
+
 function playRound(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
         return `It's a draw! You both chose ${computerSelection}`;
@@ -36,9 +37,19 @@ function playRound(playerSelection, computerSelection){
 
 function checkDraw(roundResult){
     if (roundResult.includes("draw")) return true;
+    else return false;
 }
 
-/* game() lets user choose five times. When user inputs falsly, user gets asked to input again. 
+function getPlayerChoice(){
+    let playerSelection = prompt("Choose Rock/Paper/Scissors!");
+
+    while (!checkInput(playerSelection)){
+        console.log("Invalid Input! Choose again!");
+        playerSelection = prompt("Choose Rock/Paper/Scissors!");
+    }
+}
+
+/* game() lets user choose five times. When user inputs falsy, user gets asked to input again. 
 Keeps score and reports winner at the end  */
 function game(){
 
@@ -49,11 +60,9 @@ function game(){
     for (let i = 0; i < rounds; i++){
         let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
         let computerSelection = getComputerChoice();
-        while (!checkInput(playerSelection)){
-            console.log("Wrong Input! Choose again!");
-            playerSelection = prompt("Choose again!");
-        }
-        let result = playRound(playerSelection, computerSelection)
+
+        let result = playRound(playerSelection, computerSelection);
+        
         if (result.includes("win")){
             playerScore ++;
         } else if (result.includes("lose")){
