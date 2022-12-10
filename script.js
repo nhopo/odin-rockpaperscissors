@@ -40,6 +40,7 @@ function game(){
 
     const rounds = 5;
     let playerScore = 0;
+    let computerScore = 0;
 
     for (let i = 0; i < rounds; i++){
         let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
@@ -48,20 +49,23 @@ function game(){
             console.log("Wrong Input! Choose again!");
             playerSelection = prompt("Choose again!");
         }
-        result = playRound(playerSelection, computerSelection)
+        let result = playRound(playerSelection, computerSelection)
         if (result.includes("win")){
             playerScore ++;
+        } else if (result.includes("lose")){
+            computerScore++;
         }
         console.log(result);
     }
+    
+    console.log(`YOUR SCORE: ${playerScore}     COMPUTER'S SCORE: ${computerScore}`);
 
-    let computerScore = rounds - playerScore;
     if (playerScore > computerScore){
-        return console.log(`You won ${playerScore} out of ${rounds} rounds. You win the game!`);
+        console.log("You won this game!");
     } else if (playerScore == computerScore) {
-        return console.log(`You won ${playerScore} out of ${rounds} rounds. It's a draw!`);
+        console.log("This game ends in draw!");
     } else {
-        return console.log(`You won ${playerScore} out of ${rounds} rounds. The Computer wins!`);
+        console.log("You lost this game!")
     }
 }
 
