@@ -37,15 +37,22 @@ function playRound(playerSelection, computerSelection){
 /* game() lets user choose five times. When user inputs falsly, user gets asked to input again. 
 Keeps score and reports winner at the end  */
 function game(){
-    for (let i = 0; i < 5; i++){
+
+    const rounds = 5;
+    let score = 0;
+
+    for (let i = 0; i < rounds; i++){
         let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
         let computerSelection = getComputerChoice();
         while (!checkInput(playerSelection)){
-            console.log("Wrong Input!");
+            console.log("Wrong Input! Choose again!");
             playerSelection = prompt("Choose again!");
         }
-        console.log(playRound(playerSelection, computerSelection));
-
+        result = playRound(playerSelection, computerSelection)
+        if (result.includes("win")){
+            score ++;
+        }
+        console.log(result);
     }
 }
 
