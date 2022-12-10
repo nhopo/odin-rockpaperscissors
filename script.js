@@ -34,6 +34,10 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function checkDraw(roundResult){
+    if (roundResult.includes("draw")) return true;
+}
+
 /* game() lets user choose five times. When user inputs falsly, user gets asked to input again. 
 Keeps score and reports winner at the end  */
 function game(){
