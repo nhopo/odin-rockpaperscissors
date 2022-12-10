@@ -41,7 +41,7 @@ function checkDraw(roundResult){
 }
 
 function getPlayerChoice(){
-    let playerSelection = prompt("Choose Rock/Paper/Scissors!");
+    let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
 
     while (!checkInput(playerSelection)){
         console.log("Invalid Input! Choose again!");
