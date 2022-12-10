@@ -12,21 +12,21 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
         return `It's a draw! You both chose ${computerSelection}`;
     }
-    if (playerSelection == "rock"){
+    else if (playerSelection == "rock"){
         if (computerSelection == "paper"){
             return "You lose! Paper beats Rock!";
         } else if (computerSelection == "scissors"){
             return "You win! Rock beats scissors!";
         }
     }
-    if (playerSelection == "paper"){
+    else if (playerSelection == "paper"){
         if (computerSelection == "rock"){
             return "You win! Paper beats Rock!";
         } else if (computerSelection == "scissors"){
             return "You lose! Scissors beats paper!";
         }
     }
-    if (playerSelection == "scissors"){
+    else if (playerSelection == "scissors"){
         if (computerSelection == "rock"){
             return "You lose! Rock beats Scissors!";
         } else if (computerSelection == "paper"){
@@ -68,7 +68,8 @@ function game(){
         do {
             playerSelection = getPlayerChoice();
             computerSelection = getComputerChoice();
-            result = playRound(playerScore, computerSelection);
+            result = playRound(playerSelection, computerSelection);
+            console.log(result);
         } while (checkDraw(result));
 
         if (result.includes("win")){
@@ -76,7 +77,6 @@ function game(){
         } else if (result.includes("lose")){
             computerScore++;
         }
-        console.log(result);
     }
     
     console.log(`YOUR SCORE: ${playerScore}     COMPUTER'S SCORE: ${computerScore}`);
