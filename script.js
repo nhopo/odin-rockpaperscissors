@@ -55,15 +55,15 @@ Keeps score and reports winner at the end  */
 function game(){
 
     const rounds = 5;
+    let playerSelection;
+    let computerSelection;
+    let result;
     let playerScore = 0;
     let computerScore = 0;
 
     for (let i = 0; i < rounds; i++){
 
         console.log(`ROUND ${i+1}`)
-        let playerSelection;
-        let computerSelection;
-        let result;
 
         do {
             playerSelection = getPlayerChoice();
