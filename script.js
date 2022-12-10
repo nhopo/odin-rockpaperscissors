@@ -47,7 +47,7 @@ function getPlayerChoice(){
         console.log("Invalid Input! Choose again!");
         playerSelection = prompt("Choose Rock/Paper/Scissors!");
     }
-    
+
     return playerSelection;
 }
 
@@ -60,11 +60,20 @@ function game(){
     let computerScore = 0;
 
     for (let i = 0; i < rounds; i++){
+
+        console.log(`ROUND ${i+1}`)
         let playerSelection = getPlayerChoice();
         let computerSelection = getComputerChoice();
-
         let result = playRound(playerSelection, computerSelection);
-        
+
+        /**if result is draw, the round is repeated */
+        while (checkDraw(result)){
+            console.log("It's a draw, repeat this round!");
+            playerSelection = getPlayerChoice();
+            computerSelection = getComputerChoice();
+            result = playRound(playerSelection, computerSelection);
+        }
+
         if (result.includes("win")){
             playerScore ++;
         } else if (result.includes("lose")){
