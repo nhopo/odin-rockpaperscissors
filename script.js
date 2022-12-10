@@ -39,7 +39,7 @@ Keeps score and reports winner at the end  */
 function game(){
 
     const rounds = 5;
-    let score = 0;
+    let playerScore = 0;
 
     for (let i = 0; i < rounds; i++){
         let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
@@ -50,9 +50,18 @@ function game(){
         }
         result = playRound(playerSelection, computerSelection)
         if (result.includes("win")){
-            score ++;
+            playerScore ++;
         }
         console.log(result);
+    }
+
+    let computerScore = rounds - playerScore;
+    if (playerScore > computerScore){
+        return console.log(`You won ${playerScore} out of ${rounds} rounds. You win the game!`);
+    } else if (playerScore == computerScore) {
+        return console.log(`You won ${playerScore} out of ${rounds} rounds. It's a draw!`);
+    } else {
+        return console.log(`You won ${playerScore} out of ${rounds} rounds. The Computer wins!`);
     }
 }
 
