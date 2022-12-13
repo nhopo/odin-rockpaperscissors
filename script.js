@@ -50,11 +50,9 @@ function getPlayerChoice(){
     return playerSelection;
 }
 
-/* game() lets user choose five times. When user inputs falsy, user gets asked to input again. 
-Keeps score and reports winner at the end  */
 function game(){
 
-    const rounds = 5;
+    const rounds = 1;
     let playerSelection;
     let computerSelection;
     let result;
@@ -98,7 +96,15 @@ function checkInput(playerSelection){
     }
 }
 
-game();
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', () => {
+    computerSelection = getComputerChoice();
+    playerSelection = button.id;
+    console.log(playRound(playerSelection, computerSelection));
+}));
+
+// game();
 
     
 
