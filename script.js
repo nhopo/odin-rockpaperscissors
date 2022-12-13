@@ -40,71 +40,59 @@ function checkDraw(roundResult){
     else return false;
 }
 
-function getPlayerChoice(){
-    let playerSelection = prompt("Choose Rock/Paper/Scissors!").toLowerCase();
-
-    while (!checkInput(playerSelection)){
-        console.log("Invalid Input! Choose again!");
-        playerSelection = prompt("Choose Rock/Paper/Scissors!");
-    }
-    return playerSelection;
-}
-
 function game(){
+    const rounds = 2;
+    let playerSelection, computerSelection;
+    let playerScore = 0, computerScore = 0;
+    let i = 1;
+    let roundResult;
+    const pScore = document.createElement('p');
+    const pResult = document.createElement('p');
 
-    const rounds = 1;
-    let playerSelection;
-    let computerSelection;
-    let result;
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let i = 0; i < rounds; i++){
-
-        console.log(`ROUND ${i+1}`)
-
-        do {
-            playerSelection = getPlayerChoice();
+    buttons.forEach(button => button.addEventListener('click', () => {
+        
+        if(i <= rounds){
+            const pRound = document.createElement('p');
+            
             computerSelection = getComputerChoice();
-            result = playRound(playerSelection, computerSelection);
-            console.log(result);
-        } while (checkDraw(result));
-
-        if (result.includes("win")){
-            playerScore ++;
-        } else if (result.includes("lose")){
-            computerScore++;
-        }
-    }
+            playerSelection = button.id;
     
-    console.log(`YOUR SCORE: ${playerScore}     COMPUTER'S SCORE: ${computerScore}`);
-
-    if (playerScore > computerScore){
-        console.log("You won this game!");
-    } else if (playerScore == computerScore) {
-        console.log("This game ends in draw!");
-    } else {
-        console.log("You lost this game!")
-    }
+            roundResult = playRound(playerSelection, computerSelection);
+    
+            if (!checkDraw(roundResult)){
+                if (roundResult.includes("win")){
+                    playerScore ++;
+                } else if (roundResult.includes("lose")){
+                    computerScore++;
+                }
+                pRound.textContent = `ROUND ${i}: ${roundResult}`;
+                i++;
+            } else {
+                pRound.textContent = "It's a draw. Choose again!"
+            }
+            gameResults.appendChild(pRound);
+        }
+        else {
+            pScore.textContent = `YOUR SCORE: ${playerScore} COM'S SCORE: ${computerScore}`;
+            gameResults.appendChild(pScore);
+            if (playerScore > computerScore){
+                pResult.textContent = 'You won!';
+            } else if (playerScore == computerScore) {
+                pResult.textContent = 'The game ends in ties.';
+            } else {
+                pResult.textContent = 'You lost...';
+            }
+            gameResults.appendChild(pResult);
+            return;
+        }
+    }));
 }
-
-function checkInput(playerSelection){
-    if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
-        return true;
-    } else {
-        return false;
-    }
-}
-
 
 const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', () => {
-    computerSelection = getComputerChoice();
-    playerSelection = button.id;
-    console.log(playRound(playerSelection, computerSelection));
-}));
+const gameResults = document.querySelector('#results');
 
-// game();
+game();
+
 
     
 
